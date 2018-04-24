@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     fileprivate var collectionView: UICollectionView = {
@@ -17,10 +18,26 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         //        collectionView.alwaysBounceVertical = true
         //        collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = UIColor.clear
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         return collectionView
     }()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = UIColor.lightGray.cgColor
+        let label = UILabel(frame: self.bounds)
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 23)
+        label.text = "Collection"
+        self.addSubview(label)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,11 +45,17 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
     func setup() {
-        self.addSubview(collectionView)
+        
+        self.addSubview(self.collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
