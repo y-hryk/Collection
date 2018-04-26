@@ -18,7 +18,7 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         //        collectionView.alwaysBounceVertical = true
         //        collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = UIColor.clear
+        collectionView.backgroundColor = UIColor.red
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         return collectionView

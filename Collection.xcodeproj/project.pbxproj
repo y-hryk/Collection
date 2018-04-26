@@ -15,6 +15,7 @@
 		5B19B270208C7C11002FF670 /* CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B19B26F208C7C11002FF670 /* CollectionTests.swift */; };
 		5B19B27B208C7E3D002FF670 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B19B27A208C7E3D002FF670 /* Collection.swift */; };
 		5B19B27D208CDCF7002FF670 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B19B27C208CDCF7002FF670 /* CollectionCell.swift */; };
+		5B3750712090D52000276E40 /* CollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3750702090D52000276E40 /* CollectionLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		5B19B271208C7C11002FF670 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B19B27A208C7E3D002FF670 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		5B19B27C208CDCF7002FF670 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		5B3750702090D52000276E40 /* CollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				5B19B25A208C7C11002FF670 /* AppDelegate.swift */,
 				5B19B25C208C7C11002FF670 /* ViewController.swift */,
+				5B3750702090D52000276E40 /* CollectionLayout.swift */,
 				5B19B27A208C7E3D002FF670 /* Collection.swift */,
 				5B19B27C208CDCF7002FF670 /* CollectionCell.swift */,
 				5B19B25E208C7C11002FF670 /* Main.storyboard */,
@@ -208,6 +211,7 @@
 				5B19B27B208C7E3D002FF670 /* Collection.swift in Sources */,
 				5B19B25D208C7C11002FF670 /* ViewController.swift in Sources */,
 				5B19B27D208CDCF7002FF670 /* CollectionCell.swift in Sources */,
+				5B3750712090D52000276E40 /* CollectionLayout.swift in Sources */,
 				5B19B25B208C7C11002FF670 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
