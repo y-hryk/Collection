@@ -11,10 +11,17 @@ import UIKit
 @IBDesignable
 class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    var itemSize: CGSize = .zero {
+        didSet {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
     fileprivate var collectionView: UICollectionView = {
-        let flowlayout = UICollectionViewFlowLayout()
-        flowlayout.scrollDirection = .horizontal
+//        let flowlayout = UICollectionViewFlowLayout()
+//        flowlayout.scrollDirection = .horizontal
         
+        let flowlayout = CollectionLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         //        collectionView.alwaysBounceVertical = true
         //        collectionView.isPagingEnabled = true
@@ -61,10 +68,13 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1;
+        return 5;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,6 +82,7 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionCell else {
             return CollectionCell()
         }
+        cell.backgroundColor = UIColor.orange
         return cell
     }
 }

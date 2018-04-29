@@ -32,6 +32,11 @@ class CollectionCell: UICollectionViewCell {
         imageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
+        imageView.image = UIImage(named: "sample")
     }
     
 }

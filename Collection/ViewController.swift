@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var collection: Collection!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        let newScale = 0.9
+        self.collection.itemSize = self.collection.frame.size.applying(CGAffineTransform(scaleX: CGFloat(newScale), y: CGFloat(newScale)))
     }
 
 }
