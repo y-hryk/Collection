@@ -20,7 +20,7 @@ class CollectionLayout: UICollectionViewLayout {
     
     fileprivate var itemSize: CGSize = .zero
     fileprivate var leadingSpacing: CGFloat = 0
-    fileprivate var itemSpacing: CGFloat = 10
+    fileprivate var itemSpacing: CGFloat = 0
     
     fileprivate var collection: Collection? {
         return self.collectionView?.superview as? Collection
@@ -28,17 +28,12 @@ class CollectionLayout: UICollectionViewLayout {
     
     // Calculate the layout in advance
     override func prepare() {
+        
         super.prepare()
         self.cacheAttributes.removeAll()
         guard let collectionView = self.collectionView, let collection = self.collection else {
             return
         }
-        
-        // x position
-        var xOffset = [CGFloat]()
-        xOffset.append(0)
-        
-        // y position
         
         // collectionViewSize contents size
         self.itemSize = {
@@ -48,6 +43,8 @@ class CollectionLayout: UICollectionViewLayout {
             }
             return size
         }()
+        
+        self.itemSpacing = collection.itemSpacing
         
         
         let leadingSpacing = (collection.frame.width - self.itemSize.width) * 0.5
@@ -71,7 +68,7 @@ class CollectionLayout: UICollectionViewLayout {
             self.cacheAttributes.append(attributes)
             
 //            NSLog("\(NSStringFromCGRect(attributes.frame))")
-            NSLog("\(NSStringFromCGPoint(center))")
+//            NSLog("\(NSStringFromCGPoint(center))")
         }
     }
     
@@ -80,11 +77,11 @@ class CollectionLayout: UICollectionViewLayout {
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return true
+        return false
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        
+    
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         
         for attributes in self.cacheAttributes {

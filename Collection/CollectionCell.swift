@@ -12,7 +12,7 @@ class CollectionCell: UICollectionViewCell {
     
     fileprivate var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.orange
+        imageView.backgroundColor = UIColor.clear
         return imageView;
     }()
     

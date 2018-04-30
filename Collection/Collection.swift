@@ -17,6 +17,12 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         }
     }
     
+    var itemSpacing: CGFloat = 0 {
+        didSet {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
     fileprivate var collectionView: UICollectionView = {
 //        let flowlayout = UICollectionViewFlowLayout()
 //        flowlayout.scrollDirection = .horizontal
@@ -25,7 +31,7 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         //        collectionView.alwaysBounceVertical = true
         //        collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = UIColor.red
+        collectionView.backgroundColor = UIColor.clear
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         return collectionView
@@ -82,7 +88,38 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionCell else {
             return CollectionCell()
         }
-        cell.backgroundColor = UIColor.orange
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        self.collectionView.visibleCells
+            .flatMap{ $0 as? CollectionCell }
+            .forEach { [weak self] cell in
+                self?.animationCell(cell: cell, scrollView: scrollView)
+        }
+    }
+    
+    func animationCell(cell: CollectionCell, scrollView: UIScrollView) {
+        
+//        guard let layout = collectionView.collectionViewLayout as? CollectionLayout else {
+//            return
+//        }
+        
+        let offset = scrollView.contentOffset.x;
+        let origin = cell.frame.origin.x;
+        let delta: CGFloat = fabs(origin - offset)
+        
+        var size = self.itemSize
+        if size == .zero {
+            size = self.frame.size
+        }
+        
+        let scale = 1.0 - (delta / size.width)
+        
+        print(scale)
+//        let position = (cell.center.x - collectionView.bounds.midX)
+//            / self.itemSize.width
+
     }
 }
