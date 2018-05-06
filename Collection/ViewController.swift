@@ -22,6 +22,9 @@ class ViewController: UIViewController {
         self.tableView.dataSource = self
         
         self.collection.itemSpacing = 10
+        self.collection.inset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        self.collection.itemSize = CGSize(width: self.collection.frame.width - 10
+            , height: self.collection.frame.height)
     }
 
 }

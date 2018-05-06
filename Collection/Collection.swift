@@ -23,6 +23,12 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         }
     }
     
+    var inset: UIEdgeInsets = .zero {
+        didSet {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
     fileprivate var collectionView: UICollectionView = {
 //        let flowlayout = UICollectionViewFlowLayout()
 //        flowlayout.scrollDirection = .horizontal
