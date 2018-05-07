@@ -47,14 +47,14 @@ class CollectionLayout: UICollectionViewLayout {
         self.inset = collection.inset
         self.itemSpacing = collection.itemSpacing
         
-//        let leadingSpacing = (collection.frame.width - self.itemSize.width) * 0.5
+        let leadingSpacing = (collection.frame.width - self.itemSize.width) * 0.5
 //        let leadingSpacing = CGFloat(10)
         let rows = collectionView.numberOfItems(inSection: 0);
         var cellWidth = self.itemSize.width * CGFloat(rows)
         cellWidth += CGFloat(rows - 1) * self.itemSpacing
-//        cellWidth += leadingSpacing * 2
-        cellWidth += self.inset.left
-        cellWidth += self.inset.right
+        cellWidth += leadingSpacing * 2
+//        cellWidth += self.inset.left
+//        cellWidth += self.inset.right
         self.contentSize = CGSize(width: cellWidth, height: self.itemSize.height)
         
         
@@ -67,13 +67,16 @@ class CollectionLayout: UICollectionViewLayout {
             var frame = CGRect(x: self.itemSize.width * CGFloat(index) + (CGFloat(index) * self.itemSpacing)
                 , y: 0, width: self.itemSize.width, height: self.itemSize.height)
             
-            frame.origin.x += self.inset.left
+            frame.origin.x += leadingSpacing
+//            frame.origin.x += self.inset.left
             
 //            let frame = CGRect(x: self.itemSize.width * CGFloat(index) + (CGFloat(index) * self.itemSpacing) + leadingSpacing, y: 0, width: self.itemSize.width, height: self.itemSize.height)
 //            let center = CGPoint(x: collection.center.x, y: collection.center.y)
 //            let center = CGPoint(x: frame.midX, y: collection.center.y)
 //            attributes.center = center
             attributes.frame = frame
+            attributes.center.y = collection.center.y
+            
 //            attributes.size = self.itemSize
             self.cacheAttributes.append(attributes)
             

@@ -94,6 +94,7 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionCell else {
             return CollectionCell()
         }
+        cell.tag = indexPath.row;
         return cell
     }
     
@@ -113,6 +114,7 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
 //        }
         
         let offset = scrollView.contentOffset.x;
+        print(self.collectionView.bounds.origin.x)
         let origin = cell.frame.origin.x;
         let delta: CGFloat = fabs(origin - offset)
         
@@ -122,8 +124,10 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         }
         
         let scale = 1.0 - (delta / size.width)
-        
-        print(scale)
+//        let scaleText = String.self;(format: "%.2f",scale)
+//        let scaleText = String()
+//        let scaleText = NSString(format: "%.2f", scale)
+//        print("tag:[ \(cell.tag) ] \(scaleText)" )
 //        let position = (cell.center.x - collectionView.bounds.midX)
 //            / self.itemSize.width
 
