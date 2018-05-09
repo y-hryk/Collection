@@ -114,8 +114,9 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
 //        }
         
         let offset = scrollView.contentOffset.x;
-        print(self.collectionView.bounds.origin.x)
         let origin = cell.frame.origin.x;
+        
+//        print(origin)
         let delta: CGFloat = fabs(origin - offset)
         
         var size = self.itemSize
@@ -124,6 +125,7 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         }
         
         let scale = 1.0 - (delta / size.width)
+        
 //        let scaleText = String.self;(format: "%.2f",scale)
 //        let scaleText = String()
 //        let scaleText = NSString(format: "%.2f", scale)

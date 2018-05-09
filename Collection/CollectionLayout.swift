@@ -29,9 +29,9 @@ class CollectionLayout: UICollectionViewLayout {
     
     // Calculate the layout in advance
     override func prepare() {
-        
         super.prepare()
         self.cacheAttributes.removeAll()
+        print("prepare")
         guard let collectionView = self.collectionView, let collection = self.collection else {
             return
         }
@@ -90,15 +90,28 @@ class CollectionLayout: UICollectionViewLayout {
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return false
+        return true
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
     
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         
-        for attributes in self.cacheAttributes {
+        
+        for (index, attributes) in self.cacheAttributes.enumerated() {
             if attributes.frame.intersects(rect) {
+//                if (index == 0
+//                    || index == 1
+//                    ) {
+//                    NSLog("\(attributes.center.x)")
+                    let offset: CGFloat = fabs(attributes.center.x - self.collectionView!.bounds.midX) / itemSize.width
+                    let scale = max(1 - (1-0.65) * abs(offset), 0.65)
+                    //            print("position \(position)")
+                    let transform = CGAffineTransform(scaleX: scale, y: scale)
+                    attributes.transform = transform
+                    NSLog("\(scale)")
+//                    NSLog("\(self.collectionView!.bounds.midX)")
+//                }
                 layoutAttributes.append(attributes)
             }
         }
