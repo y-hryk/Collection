@@ -21,12 +21,17 @@ class ViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.collection.itemSpacing = 0
+//        self.collection.itemSpacing = -30
 //        self.collection.inset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
 //        self.collection.itemSize = CGSize(width: self.collection.frame.width - 10
 //            , height: self.collection.frame.height)
+//        self.collection.itemSize = CGSize(width: 180, height: 180)
+        
+        let transform = CGAffineTransform(scaleX: 0.6, y: 0.75)
+        self.collection.itemSize = self.collection.frame.size.applying(transform)
     }
 
+    
 }
 
 extension ViewController: UITableViewDataSource {

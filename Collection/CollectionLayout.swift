@@ -104,12 +104,21 @@ class CollectionLayout: UICollectionViewLayout {
 //                    || index == 1
 //                    ) {
 //                    NSLog("\(attributes.center.x)")
-                    let offset: CGFloat = fabs(attributes.center.x - self.collectionView!.bounds.midX) / itemSize.width
+                    let offset: CGFloat = fabs(attributes.center.x - self.collectionView!.bounds.midX) / (itemSize.width + self.itemSpacing)
                     let scale = max(1 - (1-0.65) * abs(offset), 0.65)
                     //            print("position \(position)")
                     let transform = CGAffineTransform(scaleX: scale, y: scale)
-                    attributes.transform = transform
-                    NSLog("\(scale)")
+//                    attributes.transform = transform
+//                    attributes.alpha = scale
+                
+                var transform3D = CATransform3DIdentity
+                transform3D.m34 = -0.002
+                
+                let diff = max(1 - (1-0.65) * abs(offset), 0.65)
+                attributes.transform3D = CATransform3DRotate(transform3D, 180 * .pi / 180, 0, 1, 0)
+                
+                
+//                    NSLog("\(scale)")
 //                    NSLog("\(self.collectionView!.bounds.midX)")
 //                }
                 layoutAttributes.append(attributes)

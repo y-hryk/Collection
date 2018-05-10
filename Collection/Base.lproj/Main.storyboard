@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGa-Oc-6oT" customClass="Collection" customModule="Collection" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="193"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="jGa-Oc-6oT" secondAttribute="height" multiplier="16:9" id="FKh-2f-aIY"/>
+                                    <constraint firstAttribute="width" secondItem="jGa-Oc-6oT" secondAttribute="height" multiplier="375:193" id="FKh-2f-aIY"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="lXA-fk-2TF">
-                                <rect key="frame" x="0.0" y="211" width="375" height="456"/>
+                                <rect key="frame" x="0.0" y="193" width="375" height="474"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="8PD-UN-XmW" customClass="SliderCell" customModule="Collection" customModuleProvider="target">

@@ -16,6 +16,8 @@ class CollectionCell: UICollectionViewCell {
         return imageView;
     }()
     
+    let coverView = UIView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -26,6 +28,15 @@ class CollectionCell: UICollectionViewCell {
     }
     
     func setup() {
+        
+        
+        self.contentView.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clear
+        self.contentView.layer.shadowColor = UIColor.black.cgColor
+        self.contentView.layer.shadowRadius = 5
+        self.contentView.layer.shadowOpacity = 0.75
+        self.contentView.layer.shadowOffset = .zero
+        
         self.contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
@@ -37,6 +48,17 @@ class CollectionCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         
         imageView.image = UIImage(named: "sample")
+
+        coverView.backgroundColor = UIColor.clear
+        coverView.layer.borderColor = UIColor.orange.cgColor
+        coverView.layer.borderWidth = 2.0
+        coverView.frame = imageView.bounds
+        self.contentView.addSubview(coverView)
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
 }
