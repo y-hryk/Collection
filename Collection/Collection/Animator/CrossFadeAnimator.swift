@@ -20,7 +20,7 @@ extension CrossFadeAnimator: CollectionAnimator {
         let position = attributes.ratio
         
         var transform = CGAffineTransform.identity
-        transform.tx = -attributes.size.width * position
+        transform.tx = -(attributes.size.width + attributes.itemSpacing) * position
         attributes.transform = transform
         attributes.alpha = 1 - abs(position)
     }

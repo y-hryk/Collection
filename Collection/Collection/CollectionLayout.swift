@@ -11,8 +11,8 @@ import UIKit
 public class CollectionAttributes :UICollectionViewLayoutAttributes {
     
     public var ratio: CGFloat = 0
+    public var itemSpacing: CGFloat = 0
     public var contentView: UIView?
-    
 }
 
 class CollectionLayout: UICollectionViewLayout {
@@ -123,6 +123,7 @@ class CollectionLayout: UICollectionViewLayout {
                 
                 
                 attributes.ratio = (attributes.center.x - self.collectionView!.bounds.midX) / (itemSize.width + self.itemSpacing)
+                attributes.itemSpacing = self.itemSpacing
                 
                 if (index == 0) {
 //                    print("index \(index): \(offset)")

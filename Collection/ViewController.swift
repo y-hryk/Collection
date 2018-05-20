@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         
 //        self.collection.itemSpacing = -50
 //        self.collection.itemSpacing = 0
-        self.collection.animator = ScaleAnimator()
+        self.collection.animator = CrossFadeAnimator()
         self.collection.dataSource = self
         
         
