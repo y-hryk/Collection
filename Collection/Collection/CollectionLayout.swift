@@ -8,12 +8,17 @@
 
 import UIKit
 
-class CollectionAttributes :UICollectionViewLayoutAttributes {
+public class CollectionAttributes :UICollectionViewLayoutAttributes {
+    
+    public var ratio: CGFloat = 0
+    public var contentView: UIView?
     
 }
 
 class CollectionLayout: UICollectionViewLayout {
     
+    
+    fileprivate var animator: CollectionAnimator?
     fileprivate var inset: UIEdgeInsets = .zero
     fileprivate var contentSize: CGSize = .zero
     fileprivate var numberOfSections = 1
@@ -27,11 +32,14 @@ class CollectionLayout: UICollectionViewLayout {
         return self.collectionView?.superview as? Collection
     }
     
+    
+    public override class var layoutAttributesClass: AnyClass { return CollectionAttributes.self }
+    
     // Calculate the layout in advance
     override func prepare() {
         super.prepare()
         self.cacheAttributes.removeAll()
-        print("prepare")
+//        print("prepare")
         guard let collectionView = self.collectionView, let collection = self.collection else {
             return
         }
@@ -46,6 +54,7 @@ class CollectionLayout: UICollectionViewLayout {
         }()
         self.inset = collection.inset
         self.itemSpacing = collection.itemSpacing
+        self.animator = collection.animator
         
         let leadingSpacing = (collection.frame.width - self.itemSize.width) * 0.5
 //        let leadingSpacing = CGFloat(10)
@@ -95,32 +104,27 @@ class CollectionLayout: UICollectionViewLayout {
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
     
-        var layoutAttributes = [UICollectionViewLayoutAttributes]()
+        var layoutAttributes = [CollectionAttributes]()
         
         
         for (index, attributes) in self.cacheAttributes.enumerated() {
+            
             if attributes.frame.intersects(rect) {
-//                if (index == 0
-//                    || index == 1
-//                    ) {
+                
+                if let cell = collectionView?.cellForItem(at: attributes.indexPath)?.contentView  {
+                    attributes.contentView = cell
+                }
+                
+                
+                attributes.ratio = (attributes.center.x - self.collectionView!.bounds.midX) / (itemSize.width + self.itemSpacing)
+                
+                if (index == 0) {
+//                    print("index \(index): \(offset)")
 //                    NSLog("\(attributes.center.x)")
-                    let offset: CGFloat = fabs(attributes.center.x - self.collectionView!.bounds.midX) / (itemSize.width + self.itemSpacing)
-                    let scale = max(1 - (1-0.65) * abs(offset), 0.65)
-                    //            print("position \(position)")
-                    let transform = CGAffineTransform(scaleX: scale, y: scale)
-//                    attributes.transform = transform
-//                    attributes.alpha = scale
+                    print(attributes.ratio)
+                }
                 
-                var transform3D = CATransform3DIdentity
-                transform3D.m34 = -0.002
-                
-                let diff = max(1 - (1-0.65) * abs(offset), 0.65)
-                attributes.transform3D = CATransform3DRotate(transform3D, 180 * .pi / 180, 0, 1, 0)
-                
-                
-//                    NSLog("\(scale)")
-//                    NSLog("\(self.collectionView!.bounds.midX)")
-//                }
+                self.animator?.applyAnimator(attributes: attributes)
                 layoutAttributes.append(attributes)
             }
         }

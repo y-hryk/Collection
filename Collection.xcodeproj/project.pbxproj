@@ -18,6 +18,9 @@
 		5B3750712090D52000276E40 /* CollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3750702090D52000276E40 /* CollectionLayout.swift */; };
 		5B3750732096A8D100276E40 /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3750722096A8D100276E40 /* SliderCell.swift */; };
 		5B3750752096E3FC00276E40 /* CollectionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3750742096E3FC00276E40 /* CollectionAnimator.swift */; };
+		5B37507B20B1489800276E40 /* CubeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507A20B1489800276E40 /* CubeAnimator.swift */; };
+		5B37507D20B14EC100276E40 /* ScaleAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507C20B14EC100276E40 /* ScaleAnimator.swift */; };
+		5B37507F20B1583300276E40 /* UIView+AnchorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507E20B1583300276E40 /* UIView+AnchorPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		5B3750702090D52000276E40 /* CollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayout.swift; sourceTree = "<group>"; };
 		5B3750722096A8D100276E40 /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
 		5B3750742096E3FC00276E40 /* CollectionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionAnimator.swift; sourceTree = "<group>"; };
+		5B37507A20B1489800276E40 /* CubeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeAnimator.swift; sourceTree = "<group>"; };
+		5B37507C20B14EC100276E40 /* ScaleAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleAnimator.swift; sourceTree = "<group>"; };
+		5B37507E20B1583300276E40 /* UIView+AnchorPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AnchorPoint.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,10 +96,7 @@
 				5B19B25A208C7C11002FF670 /* AppDelegate.swift */,
 				5B19B25C208C7C11002FF670 /* ViewController.swift */,
 				5B3750722096A8D100276E40 /* SliderCell.swift */,
-				5B3750702090D52000276E40 /* CollectionLayout.swift */,
-				5B19B27A208C7E3D002FF670 /* Collection.swift */,
-				5B3750742096E3FC00276E40 /* CollectionAnimator.swift */,
-				5B19B27C208CDCF7002FF670 /* CollectionCell.swift */,
+				5B37507820B1449800276E40 /* Collection */,
 				5B19B25E208C7C11002FF670 /* Main.storyboard */,
 				5B19B261208C7C11002FF670 /* Assets.xcassets */,
 				5B19B263208C7C11002FF670 /* LaunchScreen.storyboard */,
@@ -109,6 +112,28 @@
 				5B19B271208C7C11002FF670 /* Info.plist */,
 			);
 			path = CollectionTests;
+			sourceTree = "<group>";
+		};
+		5B37507820B1449800276E40 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				5B37507920B144A500276E40 /* Animator */,
+				5B3750702090D52000276E40 /* CollectionLayout.swift */,
+				5B19B27A208C7E3D002FF670 /* Collection.swift */,
+				5B19B27C208CDCF7002FF670 /* CollectionCell.swift */,
+				5B37507E20B1583300276E40 /* UIView+AnchorPoint.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		5B37507920B144A500276E40 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				5B3750742096E3FC00276E40 /* CollectionAnimator.swift */,
+				5B37507A20B1489800276E40 /* CubeAnimator.swift */,
+				5B37507C20B14EC100276E40 /* ScaleAnimator.swift */,
+			);
+			path = Animator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,11 +241,14 @@
 			files = (
 				5B3750752096E3FC00276E40 /* CollectionAnimator.swift in Sources */,
 				5B19B27B208C7E3D002FF670 /* Collection.swift in Sources */,
+				5B37507F20B1583300276E40 /* UIView+AnchorPoint.swift in Sources */,
 				5B19B25D208C7C11002FF670 /* ViewController.swift in Sources */,
 				5B19B27D208CDCF7002FF670 /* CollectionCell.swift in Sources */,
 				5B3750712090D52000276E40 /* CollectionLayout.swift in Sources */,
+				5B37507D20B14EC100276E40 /* ScaleAnimator.swift in Sources */,
 				5B3750732096A8D100276E40 /* SliderCell.swift in Sources */,
 				5B19B25B208C7C11002FF670 /* AppDelegate.swift in Sources */,
+				5B37507B20B1489800276E40 /* CubeAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

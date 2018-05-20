@@ -23,6 +23,12 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         }
     }
     
+    var animator: CollectionAnimator? {
+        didSet {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
     var inset: UIEdgeInsets = .zero {
         didSet {
             self.collectionView.collectionViewLayout.invalidateLayout()
