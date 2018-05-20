@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.collection.itemSpacing = -50
+//        self.collection.itemSpacing = -50
 //        self.collection.itemSpacing = 0
         self.collection.animator = ScaleAnimator()
         self.collection.dataSource = self

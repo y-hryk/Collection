@@ -25,7 +25,6 @@ class CollectionLayout: UICollectionViewLayout {
     fileprivate var cacheAttributes = [CollectionAttributes]()
     
     fileprivate var itemSize: CGSize = .zero
-    fileprivate var leadingSpacing: CGFloat = 0
     fileprivate var itemSpacing: CGFloat = 0
     
     fileprivate var collection: Collection? {
@@ -52,8 +51,15 @@ class CollectionLayout: UICollectionViewLayout {
             }
             return size
         }()
+        
+        self.itemSpacing = {
+            if let animatorItemSpacing = animator?.calculateItemSpacing(itemSize: itemSize) {
+                return collection.itemSpacing + animatorItemSpacing
+            }
+            return collection.itemSpacing
+        }()
+        
         self.inset = collection.inset
-        self.itemSpacing = collection.itemSpacing
         self.animator = collection.animator
         
         let leadingSpacing = (collection.frame.width - self.itemSize.width) * 0.5
@@ -136,6 +142,8 @@ class CollectionLayout: UICollectionViewLayout {
     }
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        
+//        return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
         
         let currentPage = (self.collectionView?.contentOffset.x)! / self.pageWidth()
         

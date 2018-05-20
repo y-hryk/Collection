@@ -9,6 +9,15 @@
 import UIKit
 
 protocol CollectionAnimator {
+    
+    func calculateItemSpacing(itemSize :CGSize) -> CGFloat
     func applyAnimator(attributes :CollectionAttributes)
 }
 
+extension CollectionAnimator {
+
+    func calculateItemSpacing(itemSize :CGSize) -> CGFloat {
+        return 0.0
+    }
+    
+}
