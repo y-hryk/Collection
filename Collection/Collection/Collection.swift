@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol CollectionDataSource: NSObjectProtocol {
+    
+    func collection(_ collection: Collection, cellForItemAt indexPath: IndexPath) -> CollectionCell
+}
+
+
 @IBDesignable
 class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    weak var dataSource: CollectionDataSource?
     
     var itemSize: CGSize = .zero {
         didSet {
@@ -45,13 +53,8 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         //        collectionView.isPagingEnabled = true
         collectionView.backgroundColor = UIColor.clear
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
-        collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         return collectionView
     }()
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
@@ -78,6 +81,20 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         super.awakeFromNib()
     }
     
+    // MARK: Public
+    open func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
+        collectionView.register(cellClass, forCellWithReuseIdentifier: identifier)
+    }
+    
+    open func dequeueReusableCell(withReuseIdentifier identifier: String, at indexPath: IndexPath) -> CollectionCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? CollectionCell else {
+            return CollectionCell()
+        }
+        return cell
+    }
+    
+    // MARK: Private
     func setup() {
         
         self.addSubview(self.collectionView)
@@ -92,16 +109,13 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5;
+        return 4;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionCell else {
-            return CollectionCell()
-        }
-        cell.tag = indexPath.row;
-        return cell
+        let cell = self.dataSource?.collection(self, cellForItemAt: indexPath)
+        return cell!
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -10,7 +10,7 @@ import UIKit
 
 class CollectionCell: UICollectionViewCell {
     
-    fileprivate var imageView: UIImageView = {
+    var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.clear
         return imageView;
@@ -47,7 +47,7 @@ class CollectionCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
-        imageView.image = UIImage(named: "sample")
+        imageView.image = UIImage(named: "sample01")
 
         coverView.backgroundColor = UIColor.clear
         coverView.layer.borderColor = UIColor.orange.cgColor

@@ -21,6 +21,7 @@
 		5B37507B20B1489800276E40 /* CubeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507A20B1489800276E40 /* CubeAnimator.swift */; };
 		5B37507D20B14EC100276E40 /* ScaleAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507C20B14EC100276E40 /* ScaleAnimator.swift */; };
 		5B37507F20B1583300276E40 /* UIView+AnchorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507E20B1583300276E40 /* UIView+AnchorPoint.swift */; };
+		5B37508120B1942700276E40 /* CrossFadeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37508020B1942700276E40 /* CrossFadeAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		5B37507A20B1489800276E40 /* CubeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeAnimator.swift; sourceTree = "<group>"; };
 		5B37507C20B14EC100276E40 /* ScaleAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleAnimator.swift; sourceTree = "<group>"; };
 		5B37507E20B1583300276E40 /* UIView+AnchorPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AnchorPoint.swift"; sourceTree = "<group>"; };
+		5B37508020B1942700276E40 /* CrossFadeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossFadeAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				5B3750742096E3FC00276E40 /* CollectionAnimator.swift */,
 				5B37507A20B1489800276E40 /* CubeAnimator.swift */,
 				5B37507C20B14EC100276E40 /* ScaleAnimator.swift */,
+				5B37508020B1942700276E40 /* CrossFadeAnimator.swift */,
 			);
 			path = Animator;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				5B19B27D208CDCF7002FF670 /* CollectionCell.swift in Sources */,
 				5B3750712090D52000276E40 /* CollectionLayout.swift in Sources */,
 				5B37507D20B14EC100276E40 /* ScaleAnimator.swift in Sources */,
+				5B37508120B1942700276E40 /* CrossFadeAnimator.swift in Sources */,
 				5B3750732096A8D100276E40 /* SliderCell.swift in Sources */,
 				5B19B25B208C7C11002FF670 /* AppDelegate.swift in Sources */,
 				5B37507B20B1489800276E40 /* CubeAnimator.swift in Sources */,

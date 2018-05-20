@@ -21,9 +21,13 @@ class ViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-//        self.collection.itemSpacing = -30
-        self.collection.itemSpacing = 0
-        self.collection.animator = CubeAnimator()
+        self.collection.itemSpacing = -50
+//        self.collection.itemSpacing = 0
+        self.collection.animator = ScaleAnimator()
+        self.collection.dataSource = self
+        
+        
+        self.collection.register(CollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         
 //        self.collection.inset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
 //        self.collection.itemSize = CGSize(width: self.collection.frame.width - 10
@@ -35,6 +39,17 @@ class ViewController: UIViewController {
     }
 
     
+}
+
+extension ViewController: CollectionDataSource {
+    func collection(_ collection: Collection, cellForItemAt indexPath: IndexPath) -> CollectionCell {
+        
+        let cell = collection.dequeueReusableCell(withReuseIdentifier: "CollectionCell", at: indexPath)
+        cell.imageView.image = UIImage(named: "sample0\(indexPath.row + 1)")
+
+        
+        return cell
+    }
 }
 
 extension ViewController: UITableViewDataSource {
