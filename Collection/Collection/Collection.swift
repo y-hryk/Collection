@@ -13,11 +13,18 @@ protocol CollectionDataSource: NSObjectProtocol {
     func collection(_ collection: Collection, cellForItemAt indexPath: IndexPath) -> CollectionCell
 }
 
-
 @IBDesignable
 class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     weak var dataSource: CollectionDataSource?
+    
+    @IBInspectable
+    open var isInfinite: Bool = false {
+        didSet {
+//            self.collectionViewLayout.needsReprepare = true
+//            self.collectionView.reloadData()
+        }
+    }
     
     var itemSize: CGSize = .zero {
         didSet {
@@ -114,8 +121,11 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = self.dataSource?.collection(self, cellForItemAt: indexPath)
-        return cell!
+        if let cell = self.dataSource?.collection(self, cellForItemAt: indexPath) {
+            return cell
+        }
+        
+        return UICollectionViewCell()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

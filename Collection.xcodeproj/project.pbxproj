@@ -16,12 +16,13 @@
 		5B19B27B208C7E3D002FF670 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B19B27A208C7E3D002FF670 /* Collection.swift */; };
 		5B19B27D208CDCF7002FF670 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B19B27C208CDCF7002FF670 /* CollectionCell.swift */; };
 		5B3750712090D52000276E40 /* CollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3750702090D52000276E40 /* CollectionLayout.swift */; };
-		5B3750732096A8D100276E40 /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3750722096A8D100276E40 /* SliderCell.swift */; };
 		5B3750752096E3FC00276E40 /* CollectionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3750742096E3FC00276E40 /* CollectionAnimator.swift */; };
 		5B37507B20B1489800276E40 /* CubeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507A20B1489800276E40 /* CubeAnimator.swift */; };
 		5B37507D20B14EC100276E40 /* ScaleAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507C20B14EC100276E40 /* ScaleAnimator.swift */; };
 		5B37507F20B1583300276E40 /* UIView+AnchorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37507E20B1583300276E40 /* UIView+AnchorPoint.swift */; };
 		5B37508120B1942700276E40 /* CrossFadeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37508020B1942700276E40 /* CrossFadeAnimator.swift */; };
+		A7B6AFA820B56D810034F904 /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B6AFA620B56D810034F904 /* SliderCell.swift */; };
+		A7B6AFA920B56D810034F904 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B6AFA720B56D810034F904 /* SliderCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,12 +49,13 @@
 		5B19B27A208C7E3D002FF670 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		5B19B27C208CDCF7002FF670 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		5B3750702090D52000276E40 /* CollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayout.swift; sourceTree = "<group>"; };
-		5B3750722096A8D100276E40 /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
 		5B3750742096E3FC00276E40 /* CollectionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionAnimator.swift; sourceTree = "<group>"; };
 		5B37507A20B1489800276E40 /* CubeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeAnimator.swift; sourceTree = "<group>"; };
 		5B37507C20B14EC100276E40 /* ScaleAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleAnimator.swift; sourceTree = "<group>"; };
 		5B37507E20B1583300276E40 /* UIView+AnchorPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AnchorPoint.swift"; sourceTree = "<group>"; };
 		5B37508020B1942700276E40 /* CrossFadeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossFadeAnimator.swift; sourceTree = "<group>"; };
+		A7B6AFA620B56D810034F904 /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
+		A7B6AFA720B56D810034F904 /* SliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +99,8 @@
 			children = (
 				5B19B25A208C7C11002FF670 /* AppDelegate.swift */,
 				5B19B25C208C7C11002FF670 /* ViewController.swift */,
-				5B3750722096A8D100276E40 /* SliderCell.swift */,
+				A7B6AFA620B56D810034F904 /* SliderCell.swift */,
+				A7B6AFA720B56D810034F904 /* SliderCell.xib */,
 				5B37507820B1449800276E40 /* Collection */,
 				5B19B25E208C7C11002FF670 /* Main.storyboard */,
 				5B19B261208C7C11002FF670 /* Assets.xcassets */,
@@ -224,6 +227,7 @@
 			files = (
 				5B19B265208C7C11002FF670 /* LaunchScreen.storyboard in Resources */,
 				5B19B262208C7C11002FF670 /* Assets.xcassets in Resources */,
+				A7B6AFA920B56D810034F904 /* SliderCell.xib in Resources */,
 				5B19B260208C7C11002FF670 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7B6AFA820B56D810034F904 /* SliderCell.swift in Sources */,
 				5B3750752096E3FC00276E40 /* CollectionAnimator.swift in Sources */,
 				5B19B27B208C7E3D002FF670 /* Collection.swift in Sources */,
 				5B37507F20B1583300276E40 /* UIView+AnchorPoint.swift in Sources */,
@@ -250,7 +255,6 @@
 				5B3750712090D52000276E40 /* CollectionLayout.swift in Sources */,
 				5B37507D20B14EC100276E40 /* ScaleAnimator.swift in Sources */,
 				5B37508120B1942700276E40 /* CrossFadeAnimator.swift in Sources */,
-				5B3750732096A8D100276E40 /* SliderCell.swift in Sources */,
 				5B19B25B208C7C11002FF670 /* AppDelegate.swift in Sources */,
 				5B37507B20B1489800276E40 /* CubeAnimator.swift in Sources */,
 			);
