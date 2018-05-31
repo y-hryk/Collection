@@ -58,8 +58,11 @@ extension ViewController: CollectionDataSource {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "CollectionCell", at: indexPath)
         cell.imageView.image = UIImage(named: "sample0\(indexPath.row + 1)")
 
-        
         return cell
+    }
+    
+    func numberOfItems(in collection: Collection) -> Int {
+        return 4
     }
 }
 

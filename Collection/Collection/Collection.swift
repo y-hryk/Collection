@@ -11,6 +11,7 @@ import UIKit
 protocol CollectionDataSource: NSObjectProtocol {
     
     func collection(_ collection: Collection, cellForItemAt indexPath: IndexPath) -> CollectionCell
+    func numberOfItems(in collection: Collection) -> Int
 }
 
 @IBDesignable
@@ -116,7 +117,10 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4;
+        if let count = self.dataSource?.numberOfItems(in: self) {
+            return count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

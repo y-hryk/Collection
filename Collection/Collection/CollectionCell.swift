@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class CollectionCell: UICollectionViewCell {
     
     var imageView: UIImageView = {
@@ -28,7 +29,6 @@ class CollectionCell: UICollectionViewCell {
     }
     
     func setup() {
-        
         
         self.contentView.backgroundColor = UIColor.clear
         self.backgroundColor = UIColor.clear

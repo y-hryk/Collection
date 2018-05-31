@@ -20,16 +20,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGa-Oc-6oT" customClass="Collection" customModule="Collection" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="193"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="jGa-Oc-6oT" secondAttribute="height" multiplier="375:193" id="FKh-2f-aIY"/>
+                                    <constraint firstAttribute="width" secondItem="jGa-Oc-6oT" secondAttribute="height" multiplier="16:9" id="FKh-2f-aIY"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isInfinite" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="lXA-fk-2TF">
-                                <rect key="frame" x="0.0" y="193" width="375" height="474"/>
+                                <rect key="frame" x="0.0" y="211" width="375" height="456"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <sections/>
                             </tableView>
