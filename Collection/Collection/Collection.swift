@@ -17,6 +17,8 @@ protocol CollectionDataSource: NSObjectProtocol {
 @IBDesignable
 class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    fileprivate let factor: CGFloat = 4.0
+    fileprivate var contentWidth: CGFloat = 0.0
     weak var dataSource: CollectionDataSource?
     
     @IBInspectable
@@ -24,30 +26,46 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         didSet {
 //            self.collectionViewLayout.needsReprepare = true
 //            self.collectionView.reloadData()
+            
+            self.flowlayout.farceInvalidateLayout()
         }
     }
     
+    var currentIndex: Int = 0
+    
+    var isPageing: Bool = true {
+        didSet {
+            self.flowlayout.farceInvalidateLayout()
+        }
+    }
+    
+    var flowlayout = CollectionLayout()
+    
     var itemSize: CGSize = .zero {
         didSet {
-            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.flowlayout.farceInvalidateLayout()
         }
     }
     
     var itemSpacing: CGFloat = 0 {
         didSet {
-            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.flowlayout.farceInvalidateLayout()
         }
     }
     
     var animator: CollectionAnimator? {
         didSet {
-            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.flowlayout.farceInvalidateLayout()
+            self.collectionView.reloadData()
         }
     }
     
-    var inset: UIEdgeInsets = .zero {
-        didSet {
-            self.collectionView.collectionViewLayout.invalidateLayout()
+    fileprivate var numberOfItems: Int {
+        get {
+            if let count = self.dataSource?.numberOfItems(in: self) {
+                return count
+            }
+            return 0
         }
     }
     
@@ -89,6 +107,10 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
         super.awakeFromNib()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
     // MARK: Public
     open func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
         collectionView.register(cellClass, forCellWithReuseIdentifier: identifier)
@@ -105,6 +127,8 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: Private
     func setup() {
         
+        collectionView.collectionViewLayout = flowlayout
+        
         self.addSubview(self.collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -117,15 +141,18 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = self.dataSource?.numberOfItems(in: self) {
-            return count
+        guard let _ = self.dataSource else {
+            return 0
         }
-        return 0
+//        print(Int(Int16.max) / numberOfItems)
+        return isInfinite ? Int(Int16.max) / 4 : numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = self.dataSource?.collection(self, cellForItemAt: indexPath) {
+        let _indexPath = IndexPath(item: indexPath.row, section: indexPath.section)
+        
+        if let cell = self.dataSource?.collection(self, cellForItemAt: _indexPath) {
             return cell
         }
         
@@ -134,38 +161,10 @@ class Collection: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        self.collectionView.visibleCells
-            .flatMap{ $0 as? CollectionCell }
-            .forEach { [weak self] cell in
-                self?.animationCell(cell: cell, scrollView: scrollView)
-        }
+//        let currentIndex = Int(scrollView.contentOffset.x / itemSize.width)
+//        self.currentIndex = currentIndex
+//        print(self.currentIndex)
     }
     
-    func animationCell(cell: CollectionCell, scrollView: UIScrollView) {
-        
-//        guard let layout = collectionView.collectionViewLayout as? CollectionLayout else {
-//            return
-//        }
-        
-        let offset = scrollView.contentOffset.x;
-        let origin = cell.frame.origin.x;
-        
-//        print(origin)
-        let delta: CGFloat = fabs(origin - offset)
-        
-        var size = self.itemSize
-        if size == .zero {
-            size = self.frame.size
-        }
-        
-        let scale = 1.0 - (delta / size.width)
-        
-//        let scaleText = String.self;(format: "%.2f",scale)
-//        let scaleText = String()
-//        let scaleText = NSString(format: "%.2f", scale)
-//        print("tag:[ \(cell.tag) ] \(scaleText)" )
-//        let position = (cell.center.x - collectionView.bounds.midX)
-//            / self.itemSize.width
-
-    }
+    
 }

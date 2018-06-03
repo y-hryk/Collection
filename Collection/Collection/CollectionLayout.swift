@@ -19,29 +19,47 @@ class CollectionLayout: UICollectionViewLayout {
     
     
     fileprivate var animator: CollectionAnimator?
-    fileprivate var inset: UIEdgeInsets = .zero
     fileprivate var contentSize: CGSize = .zero
-    fileprivate var numberOfSections = 1
     fileprivate var cacheAttributes = [CollectionAttributes]()
     
     fileprivate var itemSize: CGSize = .zero
     fileprivate var itemSpacing: CGFloat = 0
+    fileprivate var isRePrepare: Bool = true
     
     fileprivate var collection: Collection? {
         return self.collectionView?.superview as? Collection
     }
     
+    func farceInvalidateLayout() {
+        isRePrepare = true
+//        cacheAttributes.forEach {
+//            $0.contentView?.layer.transform = CATransform3DIdentity
+//            $0.transform = CGAffineTransform.identity
+//            $0.alpha = 1.0
+//        }
+        self.invalidateLayout()
+    }
+    
+    func updateScrollPosition() {
+//        guard let collection = self.collection else {
+//            return
+//        }
+//        collectionView?.setContentOffset(CGPoint(x: CGFloat(collection.currentIndex) * self.pageWidth(), y: 0), animated: false)
+    }
     
     public override class var layoutAttributesClass: AnyClass { return CollectionAttributes.self }
     
     // Calculate the layout in advance
     override func prepare() {
         super.prepare()
-        self.cacheAttributes.removeAll()
-//        print("prepare")
+        
+        if (!isRePrepare) { return }
         guard let collectionView = self.collectionView, let collection = self.collection else {
             return
         }
+        
+        self.cacheAttributes.removeAll()
+        isRePrepare = false
         
         // load settings
         self.itemSize = {
@@ -52,6 +70,8 @@ class CollectionLayout: UICollectionViewLayout {
             return size
         }()
         
+        self.animator = collection.animator
+        
         self.itemSpacing = {
             if let animatorItemSpacing = animator?.calculateItemSpacing(itemSize: itemSize) {
                 return collection.itemSpacing + animatorItemSpacing
@@ -59,17 +79,12 @@ class CollectionLayout: UICollectionViewLayout {
             return collection.itemSpacing
         }()
         
-        self.inset = collection.inset
-        self.animator = collection.animator
-        
         let leadingSpacing = (collection.frame.width - self.itemSize.width) * 0.5
 //        let leadingSpacing = CGFloat(10)
         let rows = collectionView.numberOfItems(inSection: 0);
         var cellWidth = self.itemSize.width * CGFloat(rows)
         cellWidth += CGFloat(rows - 1) * self.itemSpacing
         cellWidth += leadingSpacing * 2
-//        cellWidth += self.inset.left
-//        cellWidth += self.inset.right
         self.contentSize = CGSize(width: cellWidth, height: self.itemSize.height)
         
         
@@ -98,6 +113,8 @@ class CollectionLayout: UICollectionViewLayout {
 //            NSLog("\(NSStringFromCGRect(attributes.frame))")
 //            NSLog("\(NSStringFromCGPoint(center))")
         }
+        
+        updateScrollPosition()
     }
     
     override open var collectionViewContentSize: CGSize {
@@ -112,7 +129,6 @@ class CollectionLayout: UICollectionViewLayout {
     
         var layoutAttributes = [CollectionAttributes]()
         
-        
         for (index, attributes) in self.cacheAttributes.enumerated() {
             
             if attributes.frame.intersects(rect) {
@@ -121,18 +137,12 @@ class CollectionLayout: UICollectionViewLayout {
                     attributes.contentView = cell
                 }
                 
-                
                 attributes.ratio = (attributes.center.x - self.collectionView!.bounds.midX) / (itemSize.width + self.itemSpacing)
                 attributes.itemSpacing = self.itemSpacing
-                
-                if (index == 0) {
-//                    print("index \(index): \(offset)")
-//                    NSLog("\(attributes.center.x)")
-                    print(attributes.ratio)
-                }
+                layoutAttributes.append(attributes)
                 
                 self.animator?.applyAnimator(attributes: attributes)
-                layoutAttributes.append(attributes)
+                
             }
         }
         return layoutAttributes
@@ -144,7 +154,14 @@ class CollectionLayout: UICollectionViewLayout {
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
-//        return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
+        guard let collection = self.collection else {
+            return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
+        }
+        
+        if !collection.isPageing {
+             return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
+        }
+        
         
         let currentPage = (self.collectionView?.contentOffset.x)! / self.pageWidth()
         

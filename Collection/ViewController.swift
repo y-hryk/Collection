@@ -17,7 +17,10 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,7 @@ class ViewController: UIViewController {
         
 //        self.collection.itemSpacing = -50
 //        self.collection.itemSpacing = 0
-        self.collection.animator = CrossFadeAnimator()
+//        self.collection.animator = ScaleAnimator()
         self.collection.dataSource = self
         
         
@@ -56,13 +59,13 @@ extension ViewController: CollectionDataSource {
     func collection(_ collection: Collection, cellForItemAt indexPath: IndexPath) -> CollectionCell {
         
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "CollectionCell", at: indexPath)
-        cell.imageView.image = UIImage(named: "sample0\(indexPath.row + 1)")
+        cell.imageView.image = UIImage(named: "sample0\((indexPath.row % 4)  + 1)")
 
         return cell
     }
     
     func numberOfItems(in collection: Collection) -> Int {
-        return 4
+        return 8
     }
 }
 
